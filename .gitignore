@@ -1,0 +1,58 @@
+# Laravel / PHP
+/.phpunit.cache
+.phpactor.json
+.phpunit.result.cache
+/storage/*.key
+/storage/pail
+/vendor
+
+# Laravel specific directories
+/bootstrap/ssr
+/public/build
+/public/hot
+/public/storage
+
+# PHP testing
+Homestead.json
+Homestead.yaml
+
+# Node / JavaScript
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# Authentication
+/auth.json
+
+# IDE / Editor
+/.fleet
+/.idea
+/.nova
+/.vscode
+/.zed
+
+# RoadRunner
+.rr.yaml
+rr
+
+# Development files
+.dev
+
+# Environmental files
+.env
+.env.local
+.env.development
+.env.production
+**/*/.env.local
+**/*/.env.development
+**/*/.env.production
+
+# Docker
+docker-compose.local.yml
+
+# Makefile
+makefile
+
+# Sitemaps
+/public/sitemap.xml
+/public/sitemap-*.xml
