@@ -1,13 +1,9 @@
 services:
   app:
     container_name: ${PROJECT_NAME}_app_${PROJECT_ENV}
-    hostname: ${PROJECT_NAME}-app
+    hostname: ${APP_HOST}
     build:
       context: .
-    volumes:
-      - .:/var/www/html
-    expose:
-      - ${APP_PORT}
     environment:
       # Settings
       APP_NAME: ${APP_NAME}
@@ -66,10 +62,11 @@ services:
       VITE_API_BASE_URL: ${VITE_API_BASE_URL}
 
       # MyAnimeList
-      MAL_ACCESS_TOKEN: ${MAL_ACCESS_TOKEN}
-
-    command: >
-      sh -c "php artisan octane:start --server=swoole --host=0.0.0.0 --port=${APP_PORT}"
+      MAL_ACCESS_TOKEN: ${MAL_ACCESS_TOKEN} 
+    volumes:
+      - .:/var/www/html
+      - app-vendor:/var/www/html/vendor
+      - app-build:/var/www/html/public/build      
     networks:
       - main
       - internal
@@ -78,7 +75,7 @@ services:
 
   redis:
     container_name: ${PROJECT_NAME}_redis_${PROJECT_ENV}
-    hostname: ${PROJECT_NAME}-redis
+    hostname: ${REDIS_HOST}
     image: redis:7-alpine
     expose:
       - ${REDIS_PORT}
@@ -96,4 +93,8 @@ networks:
 
 volumes:
   redis-data:
+    driver: local
+  app-vendor:
+    driver: local
+  app-build:
     driver: local
